@@ -34,9 +34,9 @@ Because full Spotify playback uses the Web Playback SDK, playback requires a Spo
 
 ## Tech Stack
 
+- JavaScript
 - HTML
 - CSS
-- JavaScript
 - Spotify Web API
 - Spotify Web Playback SDK
 - Spotify OAuth with PKCE
