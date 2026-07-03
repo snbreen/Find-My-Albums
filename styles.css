@@ -1,0 +1,457 @@
+:root {
+  --bg: #ffd4ef;
+  --pink: #df68b7;
+  --pink-dark: #8c3b6d;
+  --ink: #4d2343;
+  --cream: #fff2fb;
+  --blue: #81aee0;
+  --shadow: rgba(86, 32, 70, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.18) 1px, transparent 1px),
+    var(--bg);
+  background-size: 24px 24px;
+  color: var(--pink);
+  font-family: "Courier New", Courier, monospace;
+  overflow-x: hidden;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.page {
+  width: min(100%, 980px);
+  min-height: 100vh;
+  display: none;
+  grid-template-rows: auto auto auto 1fr;
+  justify-items: center;
+  align-content: start;
+  padding: clamp(18px, 4vw, 42px) clamp(16px, 5vw, 54px) 0;
+  position: relative;
+}
+
+.page.is-active {
+  display: grid;
+}
+
+.page-player {
+  grid-template-rows: auto auto auto auto auto 1fr;
+  align-content: start;
+  padding-top: clamp(6px, 1.8vw, 18px);
+}
+
+.pixel-title {
+  margin: 0;
+  color: var(--pink);
+  text-align: center;
+  font-weight: 900;
+  line-height: 0.9;
+  text-transform: none;
+  text-shadow:
+    4px 0 0 rgba(223, 104, 183, 0.24),
+    0 4px 0 rgba(223, 104, 183, 0.2);
+  image-rendering: pixelated;
+}
+
+.page-search .pixel-title {
+  max-width: 680px;
+  font-size: clamp(3.1rem, 9vw, 5.8rem);
+}
+
+.search-form {
+  width: min(92vw, 880px);
+  min-height: 86px;
+  margin-top: clamp(18px, 4vw, 34px);
+  display: grid;
+  grid-template-columns: 58px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 246, 252, 0.88);
+  box-shadow: 0 10px 0 rgba(255, 255, 255, 0.42), 0 16px 26px var(--shadow);
+  padding: 10px 18px 10px 26px;
+}
+
+.search-icon {
+  width: 34px;
+  height: 34px;
+  border: 8px solid var(--pink);
+  border-radius: 50%;
+  position: relative;
+  opacity: 0.85;
+}
+
+.search-icon::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 8px;
+  right: -17px;
+  bottom: -9px;
+  background: var(--pink);
+  transform: rotate(45deg);
+}
+
+.search-form input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--pink-dark);
+  font-size: clamp(1.7rem, 5vw, 4.1rem);
+  font-weight: 900;
+}
+
+.search-form input::placeholder {
+  color: rgba(223, 104, 183, 0.42);
+}
+
+.search-submit {
+  border: 0;
+  border-radius: 999px;
+  background: var(--pink);
+  color: var(--cream);
+  padding: 12px 20px;
+  font-weight: 900;
+  box-shadow: 0 5px 0 var(--pink-dark);
+}
+
+.status-line {
+  max-width: min(92vw, 920px);
+  min-height: 1.5em;
+  margin: 14px 0 0;
+  color: var(--pink-dark);
+  text-align: center;
+  font-size: clamp(0.9rem, 2.4vw, 1.15rem);
+  font-weight: 700;
+}
+
+.reset-auth {
+  align-self: start;
+  justify-self: center;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 246, 252, 0.72);
+  color: var(--pink-dark);
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 900;
+  box-shadow: 0 4px 0 rgba(223, 104, 183, 0.22);
+}
+
+.turntable-wrap {
+  position: relative;
+  width: min(72vw, 620px);
+  aspect-ratio: 1.6;
+  margin-top: auto;
+  align-self: end;
+}
+
+.page-search .turntable-wrap {
+  width: min(66vw, 550px);
+}
+
+.turntable-img,
+.vinyl-img,
+.tonearm-img {
+  image-rendering: pixelated;
+  user-select: none;
+  pointer-events: none;
+}
+
+.turntable-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 2;
+}
+
+.turntable-playing .vinyl-img,
+.player-turntable .vinyl-img {
+  position: absolute;
+  width: 55%;
+  left: 9%;
+  bottom: -1%;
+  z-index: 3;
+  border-radius: 50%;
+}
+
+.tonearm-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 4;
+}
+
+.is-spinning,
+.player-vinyl.is-spinning {
+  animation: spin 3.2s steps(32) infinite;
+}
+
+.nav-button,
+.play-button {
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: var(--pink);
+  font-weight: 900;
+  line-height: 1;
+  text-shadow: 3px 0 0 rgba(223, 104, 183, 0.18);
+}
+
+.back-button {
+  position: absolute;
+  top: 18px;
+  left: 14px;
+  width: 58px;
+  height: 58px;
+  font-size: 5rem;
+}
+
+.results-heading,
+.player-heading {
+  font-size: clamp(2.6rem, 8.5vw, 5.7rem);
+  margin-top: clamp(44px, 7vw, 70px);
+}
+
+.player-heading {
+  margin-top: clamp(20px, 3vw, 36px);
+  font-size: clamp(2.6rem, 6.5vw, 4.8rem);
+}
+
+.artist-name {
+  max-width: 92vw;
+  margin: 4px 0 12px;
+  color: var(--pink);
+  font-size: clamp(1.55rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.album-picker {
+  width: min(95vw, 850px);
+  display: grid;
+  grid-template-columns: 62px 1fr 62px;
+  align-items: center;
+  gap: clamp(8px, 2vw, 20px);
+  margin-top: 10px;
+}
+
+.carousel-button,
+.track-button {
+  width: 58px;
+  height: 58px;
+  font-size: 4rem;
+}
+
+.album-window {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 4vw, 44px);
+  align-items: start;
+}
+
+.album-card {
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--pink-dark);
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  padding: 0;
+}
+
+.album-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  image-rendering: auto;
+  border: 8px solid rgba(255, 246, 252, 0.82);
+  box-shadow: 8px 8px 0 rgba(223, 104, 183, 0.28);
+}
+
+.album-card span {
+  width: 100%;
+  min-height: 2.7em;
+  color: var(--pink-dark);
+  font-size: clamp(0.78rem, 2.2vw, 1rem);
+  font-weight: 900;
+  line-height: 1.1;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.page-results .turntable-wrap {
+  width: min(72vw, 660px);
+  margin-top: 18px;
+}
+
+.cover-art {
+  width: min(42vw, 260px);
+  aspect-ratio: 1;
+  margin-top: 18px;
+  border: 8px solid rgba(255, 246, 252, 0.82);
+  background: var(--blue);
+  background-position: center;
+  background-size: cover;
+  box-shadow: 8px 8px 0 rgba(223, 104, 183, 0.26);
+}
+
+.page-player .cover-art {
+  width: min(30vw, 230px);
+  margin-top: 8px;
+}
+
+.placeholder-cover {
+  background:
+    linear-gradient(135deg, transparent 48%, rgba(255, 255, 255, 0.36) 49% 52%, transparent 53%),
+    var(--blue);
+}
+
+.transport {
+  width: min(36vw, 310px);
+  display: grid;
+  grid-template-columns: 1fr 74px 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.play-button {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: rgba(255, 246, 252, 0.72);
+  color: var(--pink);
+  font-size: 2.5rem;
+  box-shadow: 0 7px 0 rgba(223, 104, 183, 0.28);
+}
+
+.song-name {
+  max-width: min(90vw, 620px);
+  min-height: 1.25em;
+  margin: 8px 0 0;
+  color: var(--pink);
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.player-turntable {
+  width: min(58vw, 560px);
+  margin-top: 10px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 680px) {
+  .page {
+    padding-inline: 12px;
+  }
+
+  .search-form {
+    grid-template-columns: 38px 1fr 48px;
+    min-height: 64px;
+    padding: 8px 10px 8px 16px;
+  }
+
+  .search-icon {
+    width: 24px;
+    height: 24px;
+    border-width: 6px;
+  }
+
+  .search-submit {
+    padding: 9px 10px;
+  }
+
+  .reset-auth {
+    font-size: 0.78rem;
+  }
+
+  .album-picker {
+    grid-template-columns: 42px 1fr 42px;
+  }
+
+  .album-window {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .carousel-button,
+  .track-button {
+    width: 42px;
+    height: 48px;
+    font-size: 3rem;
+  }
+
+  .back-button {
+    width: 44px;
+    height: 44px;
+    font-size: 4rem;
+  }
+
+  .cover-art {
+    width: min(58vw, 230px);
+  }
+
+  .page-search .turntable-wrap {
+    align-self: start;
+    margin-top: 18vh;
+  }
+}

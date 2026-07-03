@@ -1,0 +1,6 @@
+.DS_Store
+spotify-config.js
+.env
+.env.*
+node_modules/
+dist/

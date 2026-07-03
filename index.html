@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find My Albums</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="spotify-config.js"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="page page-search is-active" id="searchPage" aria-labelledby="searchTitle">
+        <h1 class="pixel-title" id="searchTitle">Who's Your Fav?</h1>
+        <form class="search-form" id="searchForm">
+          <label class="sr-only" for="artistSearch">Search for an artist</label>
+          <span class="search-icon" aria-hidden="true"></span>
+          <input id="artistSearch" type="search" autocomplete="off" placeholder="Type Here" />
+          <button class="search-submit" type="submit" aria-label="Search artists">Go</button>
+        </form>
+        <p class="status-line" id="searchStatus" role="status"></p>
+        <button class="reset-auth" id="resetAuth" type="button">Reset Spotify Login</button>
+        <div class="turntable-wrap turntable-empty" aria-hidden="true">
+          <img class="turntable-img" src="record-player-cutout.png" alt="" />
+        </div>
+      </section>
+
+      <section class="page page-results" id="resultsPage" aria-labelledby="resultsTitle">
+        <button class="nav-button back-button" id="resultsBack" type="button" aria-label="Back to search">‹</button>
+        <h1 class="pixel-title results-heading" id="resultsTitle">Results For:</h1>
+        <p class="artist-name" id="artistName"></p>
+
+        <div class="album-picker" aria-live="polite">
+          <button class="nav-button carousel-button" id="albumPrev" type="button" aria-label="Previous albums">‹</button>
+          <div class="album-window" id="albumWindow"></div>
+          <button class="nav-button carousel-button" id="albumNext" type="button" aria-label="Next albums">›</button>
+        </div>
+        <p class="status-line" id="resultsStatus" role="status"></p>
+
+        <div class="turntable-wrap turntable-playing" aria-hidden="true">
+          <img class="vinyl-img is-spinning" src="vinyl-cutout.png" alt="" />
+          <img class="turntable-img" src="record-player-cutout.png" alt="" />
+          <img class="tonearm-img" src="tonearm-overlay.png" alt="" />
+        </div>
+      </section>
+
+      <section class="page page-player" id="playerPage" aria-labelledby="playerTitle">
+        <button class="nav-button back-button" id="playerBack" type="button" aria-label="Back to results">‹</button>
+        <h1 class="pixel-title player-heading" id="playerTitle">Enjoy :)</h1>
+
+        <div class="cover-art placeholder-cover" id="coverArt" role="img" aria-label="Selected album cover"></div>
+
+        <div class="transport" aria-label="Album player controls">
+          <button class="nav-button track-button" id="prevTrack" type="button" aria-label="Previous track">‹‹</button>
+          <button class="play-button" id="playPause" type="button" aria-label="Pause">Ⅱ</button>
+          <button class="nav-button track-button" id="nextTrack" type="button" aria-label="Next track">››</button>
+        </div>
+        <p class="song-name" id="songName">Song Name</p>
+        <p class="status-line" id="playerStatus" role="status"></p>
+
+        <div class="turntable-wrap player-turntable" aria-hidden="true">
+          <img class="vinyl-img player-vinyl" id="playerVinyl" src="vinyl-cutout.png" alt="" />
+          <img class="turntable-img" src="record-player-cutout.png" alt="" />
+          <img class="tonearm-img" src="tonearm-overlay.png" alt="" />
+        </div>
+      </section>
+    </main>
+
+    <audio id="audioPlayer"></audio>
+    <script src="app.js"></script>
+  </body>
+</html>
